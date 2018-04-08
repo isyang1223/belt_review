@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Books Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <a href="/books/add">Add Book and Review</a>
+        <a href="/logout">Logout</a>
+    <div class="container">
+    
+        
+    <h1>Welcome, {{loggeduser.alias}}!</h1>
+    <h3>Recent Book Reviews:</h3>
+     {% for i in recentbook %}
+    <h4>Book title: <a href="/books/{{i.bookreview.id}}">{{i.bookreview.title}}</a></h4>
+    <h4>Rating: {{i.rating}}</h4>
+    <h4><a href="/users/{{ i.reviewer.id }}">{{i.reviewer.name}}</a>'s review: {{i.content}}</h4>
+    <h5>Posted on {{i.created_at}}</h5><br>
+
+
+    
+    {% endfor %}
+
+    
+        <h3>All the books:</h3>
+         {% for x in allbook %}
+        <p><a href="/books/{{x.id}}">{{x.title}}</p></a>
+         {% endfor %}
+
+
+
+
+
+    </div>
+</body>
+
+</html>

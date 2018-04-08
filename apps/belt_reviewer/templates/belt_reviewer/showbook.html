@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Book and Review</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    
+        <a href="/books">Home</a>
+        <a href="/logout">Logout</a>
+        <div class="container">
+       
+            <h1>{{book.title}}</h1>
+            <h3>Author: {{book.author}}     </h3>
+
+            <h1>Reviews:</h1>
+                 {% for i in review %}
+                <br><h3>Reviewer: <a href="/users/{{ i.reviewer.id }}">{{i.reviewer.name}}</a></h3>
+                <h3>{{i.content}}</h3>
+                 
+                 
+                
+                <h3>Rating: {{i.rating}}</h3>
+                
+                <h3>{{i.created_at}}</h3>
+                {% if i.reviewer_id == request.session.logged_id %}
+                <a href ="/deletereview/{{i.id}}">Delete this review</a>
+                {% endif %}<br>
+                {% endfor %}
+
+      
+
+     
+            <form action='/addreview/{{book.id}}' method='post'>
+            {% csrf_token %}
+           
+           
+            <h4>Add a Review:
+                <input type="textarea" name="content" class="form-control" style="height:200px;"style="width:50%;">
+            </h4>
+        
+            <h4>Rating
+                <select name="rating" class="form-control" style="width:5%;">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+        
+            </h4>
+            <input type="hidden" name="ruploader_id" value="{{request.session.logged_id}}">
+            <input type='submit' value='Submit Review' class="btn btn-primary">
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <title>Welcome</title>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body> 
+    <div class="container">
+    <div class="form-group">
+        <form action='/login' method='post'>
+   
+        <h1>Welcome!</h1>
+        <h2>Login</h2>
+       
+            {% csrf_token %}
+            <h4>Email:
+                <input class="form-control" style="width:50%;" type='email' name='logemail'>
+            </h4>
+            <h4>Password:
+                <input class="form-control" style="width:50%;" type="password" name="password">
+            </h4>
+
+            <input type='submit' value='Login' class="btn btn-primary">
+        </form>
+        </div>
+             {% if messages %} {% for x in messages %}
+            
+            <h1>{{x}}</h1>
+            {% endfor %} {% endif %}
+        
+        <div class="form-group">
+        <h2>registration</h2>
+        <form action='/registration' method='post'>
+            {% csrf_token %}
+
+            <p></p>
+            <h4>Email:
+                <input class="form-control" style="width:50%;" type='email' name='email'>
+            </h4>
+            <h4>Name:
+                <input class="form-control" style="width:50%;" type='text' name='name'>
+            </h4>
+            <h4>Alias:
+                <input class="form-control" style="width:50%;" type='text' name='alias'>
+            </h4>
+            <h4>Password:
+                <input class="form-control" style="width:50%;" type="password" name="password">
+            </h4>
+            <h5>*Password should be at least 8 characters</h5>
+            <h4>Confirm Password:
+            <input class="form-control" style="width:50%;" type="password" name="password2" >
+            </h4>
+            
+
+            <p></p>
+            
+
+            <input type='submit' value='Register' class="btn btn-danger">
+        </form>
+        </div>
+
+
+
+  </div>
+</body>
+
+</html>
